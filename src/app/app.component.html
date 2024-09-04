@@ -1,0 +1,68 @@
+<div class="flex min-h-screen flex-col items-center justify-center space-y-4 bg-gray-100">
+
+  @for(card of cards; track card.id) {
+  <div id="card-front" class="flex aspect-[1.74] w-[700px] max-w-xl bg-white shadow-lg">
+    <div class="flex w-4/12 h-full flex-col items-center justify-around bg-[#014064] p-4 text-white">
+      <img src="rupp-logo.png " alt="RUPP Logo" class="w-24" />
+      <div class="text-center">
+        <div class="text">ROYAL UNIVERSITY</div>
+        <div class="text">OF PHNOM PENH</div>
+      </div>
+      <qrcode qrdata="https://c.eventhub.one?id=1" colorLight="#014064" colorDark="#fff" [margin]="0"></qrcode>
+    </div>
+    <div class="flex flex-col w-8/12 h-full p-4 text-[#014064]">
+      <div class="text-xl font-bold">
+        <span class="uppercase mr-2">{{card.firstname}}</span>
+        <span>{{card.lastname}}</span>
+      </div>
+      <div class="italic">{{card.position}}</div>
+      <div class="mt-2 text-sm flex flex-col" [innerHTML]="card.department"></div>
+      <div class="mt-4 space-y-1 text-sm">
+        <div class="flex space-x-2">
+          <mat-icon class="text-[18px] mt-[2px]">school</mat-icon>
+          <div class="flex flex-col">
+            <span>{{card.faculty}}</span>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <mat-icon class="text-[18px] mt-[2px]">mail</mat-icon>
+          <div class="flex flex-col">
+            @for(mail of card.emails; track mail) {
+            <span>{{mail}}</span>
+            }
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <mat-icon class="text-[18px] mt-[2px]">phone</mat-icon>
+          <div class="flex flex-col">
+            @for(phone of card.phones; track phone) {
+              <span>{{phone}}</span>
+              }
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <mat-icon class="text-[18px] mt-[2px]">language</mat-icon>
+          <div class="flex flex-col">
+            <span>www.fe.rupp.edu.kh</span>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <mat-icon class="text-[18px] mt-[2px]">location_on</mat-icon>
+          <div class="flex flex-col" [innerHTML]="card.address"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+
+
+  <div id="card-back" class="flex aspect-[1.74] w-[700px] max-w-xl bg-white shadow-lg">
+    <div class="w-full h-full flex flex-col items-center justify-center p-4 text-[#014064]">
+      <img src="sca-logo.png" class="w-[150px]" />
+      <div class="h-4"></div>
+      <span>Department of Automation and </span>
+      <span>Supply Chain Systems Engineering</span>
+    </div>
+  </div>
+  <button (click)="downloadPDF()">Download PDF</button>
+</div>
