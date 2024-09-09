@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { QRCodeModule } from 'angularx-qrcode';
 import html2canvas from 'html2canvas';
 import { HttpClient } from '@angular/common/http';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -35,21 +36,27 @@ export class AppComponent implements OnInit {
       });
   }
   downloadPDF(): void {
-    this.saveImage('card-front');
-    this.saveImage('card-back');
+    var elements = document.getElementsByClassName('card-front') as any as HTMLElement[];
+    for (const ele of elements) {
+      this.saveImage(ele, 'card-front');
+    }
+    elements = document.getElementsByClassName('card-back') as any as HTMLElement[];
+    for (const ele of elements) {
+      this.saveImage(ele, 'card-back');
+    }
   }
 
-  private saveImage(id: string): void {
-    const element = document.getElementById(id) as HTMLElement;
+  private saveImage(element: HTMLElement, name: string): void {
     if (!element) return;
     element.classList.remove('shadow-lg');
     html2canvas(element!).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const link = document.createElement('a');
       link.href = imgData;
-      link.download = `${id}.png`;
+      link.download = `${name}.png`;
       link.click();
       element.classList.add('shadow-lg');
     });
   }
+
 }
