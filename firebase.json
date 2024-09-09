@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "sca-card",
+    "source": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
