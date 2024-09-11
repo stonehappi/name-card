@@ -1,31 +1,31 @@
 <div class="flex min-h-screen flex-col items-center justify-center space-y-4 bg-gray-100">
 
-  @for(card of cards; track card.id) {
-  <div class="card-front flex h-[316.6px] w-[520px]  bg-white shadow-lg hover:shadow-none">
+  @for(card of card; track card) {
+  <div class="card-front flex h-[316.6px] w-[520px] bg-white shadow-lg">
     <div class="flex w-4/12 h-full flex-col items-center justify-around bg-[#014064] p-4 text-white">
-      <img src="rupp-logo.png " alt="RUPP Logo" class="w-24" />
-      <div class="text-center">
+      <img src="rupp-logo.png" alt="RUPP Logo" class="w-24" />
+      <div class="text-center font-bold text-xs">
         <div class="text-sm">ROYAL UNIVERSITY</div>
         <div class="text-sm">OF PHNOM PENH</div>
       </div>
       <qrcode [width]="96" qrdata="https://c.eventhub.one?id={{card.code}}" colorLight="#014064" colorDark="#fff" [margin]="0"></qrcode>
-    </div> 
+    </div>
     <div class="flex flex-col w-8/12 h-full p-4 text-[#014064]">
       <div class="text-xl font-bold">
         <span class="uppercase mr-2">{{card.firstname}}</span>
         <span>{{card.lastname}}</span>
       </div>
-      <div class="italic">{{card.position}}</div>
+      <div class="italic text-sm font-thin">{{card.position}}</div>
       <div class="mt-2 text-sm flex flex-col" [innerHTML]="card.department"></div>
-      <div class="mt-4 space-y-1 text-sm">
-        <div class="flex space-x-2">
-          <mat-icon class="text-[18px] mt-[2px]">school</mat-icon>
+      <div class="mt-4 space-y-1.5 text-sm">
+        <div class="flex space-x-2 items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#014064"><path d="M840-288v-276L480-384 48-600l432-216 432 216v312h-72ZM480-144 216-276v-159l264 132 264-132v159L480-144Z"/></svg>
           <div class="flex flex-col">
             <span>{{card.faculty}}</span>
           </div>
         </div>
         <div class="flex space-x-2">
-          <mat-icon class="text-[18px] mt-[2px]">mail</mat-icon>
+          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#014064"><path d="M168-192q-29 0-50.5-21.5T96-264v-432q0-29 21.5-50.5T168-768h624q30 0 51 21.5t21 50.5v432q0 29-21 50.5T792-192H168Zm312-240 312-179v-85L480-517 168-696v85l312 179Z"/></svg>
           <div class="flex flex-col">
             @for(mail of card.emails; track mail) {
             <span>{{mail}}</span>
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="flex space-x-2">
-          <mat-icon class="text-[18px] mt-[2px]">phone</mat-icon>
+          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#014064"><path d="M763-145q-121-9-229.5-59.5T339-341q-86-86-136-194.5T144-765q-2-21 12.5-36.5T192-817h136q17 0 29.5 10.5T374-780l24 107q2 13-1.5 25T385-628l-97 98q20 38 46 73t58 66q30 30 64 55.5t72 45.5l99-96q8-8 20-11.5t25-1.5l107 23q17 5 27 17.5t10 29.5v136q0 21-16 35.5T763-145Z"/></svg>
           <div class="flex flex-col">
             @for(phone of card.phones; track phone) {
               <span>{{phone}}</span>
@@ -41,13 +41,13 @@
           </div>
         </div>
         <div class="flex space-x-2">
-          <mat-icon class="text-[18px] mt-[2px]">language</mat-icon>
+          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#014064"><path d="M480-96q-79 0-149-30t-122.5-82.5Q156-261 126-331T96-480q0-80 30-149.5t82.5-122Q261-804 331-834t149-30q80 0 149.5 30t122 82.5Q804-699 834-629.5T864-480q0 79-30 149t-82.5 122.5Q699-156 629.5-126T480-96Zm0-75q17-17 34-63.5T540-336H420q9 55 26 101.5t34 63.5Zm-91-10q-14-30-24.5-69T347-336H204q29 57 77 97.5T389-181Zm182 0q60-17 108-57.5t77-97.5H613q-7 47-17.5 86T571-181ZM177-408h161q-2-19-2.5-37.5T335-482q0-18 .5-35.5T338-552H177q-5 19-7 36.5t-2 35.5q0 18 2 35.5t7 36.5Zm234 0h138q2-20 2.5-37.5t.5-34.5q0-17-.5-35t-2.5-37H411q-2 19-2.5 37t-.5 35q0 17 .5 35t2.5 37Zm211 0h161q5-19 7-36.5t2-35.5q0-18-2-36t-7-36H622q2 19 2.5 37.5t.5 36.5q0 18-.5 35.5T622-408Zm-9-216h143q-29-57-77-97.5T571-779q14 30 24.5 69t17.5 86Zm-193 0h120q-9-55-26-101.5T480-789q-17 17-34 63.5T420-624Zm-216 0h143q7-47 17.5-86t24.5-69q-60 17-108 57.5T204-624Z"/></svg>
           <div class="flex flex-col">
             <span>www.fe.rupp.edu.kh</span>
           </div>
         </div>
         <div class="flex space-x-2">
-          <mat-icon class="text-[18px] mt-[2px]">location_on</mat-icon>
+          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#014064"><path d="M480.21-480Q510-480 531-501.21t21-51Q552-582 530.79-603t-51-21Q450-624 429-602.79t-21 51Q408-522 429.21-501t51 21ZM480-96Q323.03-227.11 245.51-339.55 168-452 168-549q0-134 89-224.5T479.5-864q133.5 0 223 90.5T792-549q0 97-77 209T480-96Z"/></svg>
           <div class="flex flex-col" [innerHTML]="card.address"></div>
         </div>
       </div>
